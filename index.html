@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tugas Vue js</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+</head>
+
+<body>
+
+    <div id="app">
+        <tampil></tampil>
+    </div>
+
+    <script>
+        Vue.component('tampil', {
+            template: '<div class="container">' +
+                '<div class="row justify-content-center">' +
+                '<div class="col-md-6">' +
+                '<hr>' +
+                '<h2 class="text-center"> Tugas Vue Js</h2>' +
+                '<div v-for="item in tampils">' +
+                '<br>' +
+                '<button v-on:click="counter += 1">+</button>' +
+                '<h5>{{ item.name }} || 14 Nopember 2020 || Score : {{ counter }}</h5>' +
+                '<button v-on:click="counter -= 1">-</button>' +
+                '</div>' +
+                '<hr>' +
+                '<textarea class="form-control" v-model="tampil.name" v-on:keyup.enter="addtampil">' +
+                '<hr>' +
+                '</div>' +
+                '</div>' +
+                '</div>' +
+                '</div>',
+            data: function() {
+                return {
+                    tampils: [],
+                    counter: 0,
+                    tampil: {
+                        name: '',
+                        done: false
+                    }
+                }
+            },
+
+            methods: {
+                addtampil() {
+                    if (this.tampil.name != '') {
+                        this.tampils.push(this.tampil)
+                        this.tampil = {
+                            name: '',
+                            done: false
+                        }
+                    }
+                },
+
+            }
+        });
+        new Vue({
+            el: '#app',
+        })
+    </script>
+
+</body>
+
+</html>
